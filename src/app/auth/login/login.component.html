@@ -1,0 +1,63 @@
+<div class="p-lg-5 p-sm-1 container-fluid">
+
+    <div class="row">
+
+        <!-- image container -->
+        <div class="col-xl-8 col-md-7 col-0 d-flex aling-items-center">
+            <img src="../../../assets/login.jpg" alt="login page side image" class="img-fluid"
+                style="object-fit: cover;">
+        </div>
+        <!-- /image container -->
+
+        <!-- form container -->
+        <div class="col-xl-4 col-md-5 col-12">
+            <div class="conatiner p-lg-3">
+
+                <div class="d-flex justify-content-center">
+                    <img src="../../../assets/logo-with-name.png" alt="SeaBasket Logo" class="w-25 col-4">
+                </div>
+                <p class="h3 text-center text-success mb-3">Login</p>
+
+                <!-- form  -->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                    <!-- email or phoneNo -->
+                    <div class="mb-3">
+                        <label for="email" class="mb-1">Email Or Phone number</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter Email Or PhoneNo"
+                            formControlName="emailOrPhoneNo"
+                            [ngClass]="{'is-invalid':f['emailOrPhoneNo'].invalid && f['emailOrPhoneNo'].touched}">
+                        <span *ngIf="f['emailOrPhoneNo'].errors && f['emailOrPhoneNo'].touched"
+                            class="invalid-feedback">
+                            <span *ngIf="f['emailOrPhoneNo'].errors['required']">Email or phone
+                                number is required.</span>
+                            <span *ngIf="f['emailOrPhoneNo'].errors['notEmailOrPhone']">Please
+                                enter a valid email or
+                                phone number.</span>
+                        </span>
+                    </div>
+
+                    <!-- password -->
+                    <div class="mb-3">
+                        <label for="password" class="mb-1">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter Password"
+                            formControlName="password"
+                            [ngClass]="{'is-invalid':f['password'].invalid && f['password'].touched}">
+                        <span *ngIf="f['password'].errors && f['password'].touched" class="invalid-feedback">
+                            <span *ngIf="f['password'].errors['required']" class="">Password is required.</span>
+                        </span>
+                    </div>
+
+                    <hr>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success px-4">Login</button>
+                    </div>
+                </form>
+                <!-- /form -->
+
+            </div>
+        </div>
+        <!-- form container -->
+
+    </div>
+</div>
