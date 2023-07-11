@@ -35,7 +35,6 @@ export class VerificationComponent {
       }
       // this.router.navigate(['/home']);
     })
-
   }
 
 }

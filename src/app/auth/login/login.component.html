@@ -40,12 +40,19 @@
                     <!-- password -->
                     <div class="mb-3">
                         <label for="password" class="mb-1">Password</label>
+
                         <input type="password" class="form-control" id="password" placeholder="Enter Password"
                             formControlName="password"
                             [ngClass]="{'is-invalid':f['password'].invalid && f['password'].touched}">
                         <span *ngIf="f['password'].errors && f['password'].touched" class="invalid-feedback">
                             <span *ngIf="f['password'].errors['required']" class="">Password is required.</span>
                         </span>
+
+                        <!-- navigate link for forgot password -->
+                        <div class="py-2">
+                            <small class="float-end"><a [routerLink]="['../forgot-password']"
+                                    class="link-success link-underline-opacity-0">Forgor Password ?</a></small>
+                        </div>
                     </div>
 
                     <hr>
