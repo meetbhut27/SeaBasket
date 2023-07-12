@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { catchError, map } from 'rxjs';
 
-import { forgetPasswordAPI, loginAPI, verificationAPI } from 'src/app/shared/APIs';
+import { forgetPasswordAPI, loginAPI, resetPasswordAPI, verificationAPI } from 'src/app/shared/APIs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +42,22 @@ export class AuthService {
     )
   }
 
-  // for OTP verification API
-  forgotPassword(otpObject: FormData) {
-    return this.http.post(forgetPasswordAPI, otpObject).pipe(
+  // for forget-password email API
+  forgotPassword(emailObject: FormData) {
+    return this.http.post(forgetPasswordAPI, emailObject).pipe(
+      catchError((error) => {
+        this.commonErrorHandler(error)
+        return '';
+      }),
+      map((res) => {
+        return res;
+      })
+    )
+  }
+
+  // for reset-password API
+  resetPassword(passwordObject: object, token: string) {
+    return this.http.post(resetPasswordAPI + token, passwordObject).pipe(
       catchError((error) => {
         this.commonErrorHandler(error)
         return '';
@@ -57,7 +70,6 @@ export class AuthService {
 
   // for handling errors
   commonErrorHandler(error: any) {
-    console.log()
     alert(error.error.message)
   }
 

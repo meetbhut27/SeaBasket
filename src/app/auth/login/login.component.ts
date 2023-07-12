@@ -33,7 +33,6 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe((Data) => {
 
       if (Data !== '') {
-        console.log(Data)
         this.router.navigate(['auth/verification'])
       }
 

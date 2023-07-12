@@ -32,7 +32,6 @@ export class ForgotPasswordComponent {
     this.authService.forgotPassword(this.forgotPassForm.value).subscribe((Data: any) => {
 
       if (Data !== '') {
-        console.log(Data)
         alert(Data.message)
       }
 

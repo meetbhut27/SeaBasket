@@ -30,10 +30,9 @@ export class VerificationComponent {
     this.authService.verification(this.verificationForm.value).subscribe((Data: any) => {
 
       if (Data !== '') {
-        console.log(Data);
         localStorage.setItem('authToken', Data.authToken)
+        // this.router.navigate(['/home']);
       }
-      // this.router.navigate(['/home']);
     })
   }
 
