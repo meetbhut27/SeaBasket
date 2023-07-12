@@ -31,11 +31,7 @@ export class LoginComponent {
     }
 
     this.authService.login(this.loginForm.value).subscribe((Data) => {
-
-      if (Data !== '') {
-        this.router.navigate(['auth/verification'])
-      }
-
+      this.router.navigate(['auth/verification'])
     })
   }
 
