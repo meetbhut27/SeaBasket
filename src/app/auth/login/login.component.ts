@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { emailOrPhone } from 'src/app/shared/emailOrPhone.validator';
+import { emailOrPhone } from 'src/app/shared/validators/emailOrPhone.validator';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 

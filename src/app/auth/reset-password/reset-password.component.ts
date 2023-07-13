@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { passwordMatchValidator } from 'src/app/shared/passwordMatch.validator';
+import { passwordMatchValidator } from 'src/app/shared/validators/passwordMatch.validator';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
