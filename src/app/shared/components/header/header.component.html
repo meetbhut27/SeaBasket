@@ -29,15 +29,17 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-white fs-5">Profile</a>
-                    </li>
-
-                    <li class="nav-item mx-2">
                         <a class="nav-link text-white fs-5"><i class="bi bi-cart3">Cart</i></a>
                     </li>
 
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white fs-5">Login<i class="bi bi-box-arrow-in-right"></i></a>
+                    <li class="nav-item mx-2" *ngIf="isLogedIn">
+                        <a class="nav-link text-white fs-5"><i class="bi bi-person-fill me-1"></i>{{userName | titlecase
+                            }}</a>
+                    </li>
+
+                    <li class="nav-item mx-2" *ngIf="!isLogedIn">
+                        <a class="nav-link text-white fs-5" [routerLink]="['auth/login']">Login<i
+                                class="bi bi-box-arrow-in-right"></i></a>
                     </li>
 
                 </ul>

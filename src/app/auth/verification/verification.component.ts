@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-verification',
@@ -12,7 +13,7 @@ export class VerificationComponent {
 
   verificationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {
     this.verificationForm = this.formBuilder.group({
       OTP: [, [Validators.required, Validators.pattern('^[0-9]{6}$')]]
     });
@@ -28,8 +29,10 @@ export class VerificationComponent {
     }
 
     this.authService.verification(this.verificationForm.value).subscribe((Data: any) => {
-      localStorage.setItem('authToken', Data.authToken)
-      // this.router.navigate(['/home']);
+      this.toastr.success(Data.message)
+      const { userName, authToken } = Data
+      localStorage.setItem('userData', JSON.stringify({ userName, authToken }))
+      this.router.navigate(['/home']);
     })
   }
 
