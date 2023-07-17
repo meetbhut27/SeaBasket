@@ -1,0 +1,246 @@
+<!-- profile container -->
+<div class="container-lg">
+    <div class="row py-4">
+
+        <!-- profile image -->
+        <div class="col-md-4 mt-md-5 col-12 m-auto">
+            <p class="text-center">
+                <img src="../../../assets/man.png" alt="" class="w-100" style="max-width: 416px;">
+            </p>
+        </div>
+
+        <div class="col-md-8 px-xxl-5 col-12">
+
+            <!-- profile display -->
+            <div class="" *ngIf="!isProfileEdit">
+                <p class="h3 text-success opacity-75 text-center mb-3">Your Profile</p>
+
+                <div class="px-xl-5 px-2">
+
+                    <div class="fs-5">Name: <span>{{userProfile?.name |titlecase}}</span></div>
+                    <hr>
+                    <div class="fs-5">Email: <span>{{userProfile?.email | titlecase }}</span></div>
+                    <hr>
+                    <div class="fs-5">PhoneNo: <span>{{userProfile?.phoneNo}}</span></div>
+                    <hr>
+
+                    <!-- address card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="h4 fs-5">Address
+                                <span>(<span>{{userAddress?.name | titlecase}}</span>)</span>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="fs-5 mb-1">{{userAddress?.address | titlecase}},</p>
+                            <p class="fs-5 mb-1">{{userAddress?.city | titlecase}},</p>
+                            <p class="fs-5 mb-1">{{userAddress?.state | titlecase}},</p>
+                            <p class="fs-5 mb-1">{{userAddress?.zip}}</p>
+                        </div>
+                    </div>
+
+                    <div class="float-end mt-5">
+                        <button type="button" class="btn btn-outline-success opacity-75" (click)="toggleEdit()">Edit
+                            Profile</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- profile edit -->
+            <div class="" *ngIf="isProfileEdit">
+                <p class="h3 text-success opacity-75 text-center mb-3">Edit Profile</p>
+
+                <div class="px-5">
+
+                    <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+
+                        <!-- user name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name"
+                                formControlName="name"
+                                [ngClass]="{'is-invalid':f['name'].invalid && f['name'].touched}">
+                            <span *ngIf="f['name'].errors && f['name'].touched" class="invalid-feedback">
+                                <span *ngIf="f['name'].errors['required']">Name is Required</span>
+                                <span *ngIf="f['name'].errors['pattern']">Please enter the valid name</span>
+                            </span>
+                        </div>
+
+                        <!-- user email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                formControlName="email"
+                                [ngClass]="{'is-invalid':f['email'].invalid && f['email'].touched}">
+                            <span *ngIf="f['email'].errors && f['email'].touched" class="invalid-feedback">
+                                <span *ngIf="f['email'].errors['required']">Email is Required</span>
+                                <span *ngIf="f['email'].errors['pattern']">Please enter the valid email</span>
+                            </span>
+                        </div>
+
+                        <!-- user phoneNo -->
+                        <div class="mb-3">
+                            <label for="phoneNo" class="form-label">PhoneNo</label>
+                            <input type="text" class="form-control" id="phoneNo" placeholder="Enter phoneNo"
+                                formControlName="phoneNo"
+                                [ngClass]="{'is-invalid':f['phoneNo'].invalid && f['phoneNo'].touched}">
+                            <span *ngIf="f['phoneNo'].errors && f['phoneNo'].touched" class="invalid-feedback">
+                                <span *ngIf="f['phoneNo'].errors['required']">Phone number is Required</span>
+                                <span *ngIf="f['phoneNo'].errors['pattern']">Please enter the valid phone number</span>
+                            </span>
+                        </div>
+
+                        <!--shipping address group -->
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Shipping Address</label>
+                            <div class="ps-md-5" formGroupName="Address">
+
+                                <!-- address name -->
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Address Type"
+                                        formControlName="name"
+                                        [ngClass]="{'is-invalid':f2['name'].errors && f2['name'].touched}">
+                                    <span *ngIf="f2['name'].errors && f2['name'].touched" class="invalid-feedback">
+                                        <span *ngIf="f2['name'].errors['required']">Address Type is required.</span>
+                                        <span *ngIf="f2['name'].errors['pattern']">Please enter valid address
+                                            name.</span>
+                                    </span>
+                                </div>
+
+                                <!-- Street name -->
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="address" placeholder="Enter Street"
+                                        formControlName="address"
+                                        [ngClass]="{'is-invalid':f2['address'].errors && f2['address'].touched}">
+                                    <span *ngIf="f2['address'].errors && f2['address'].touched"
+                                        class="invalid-feedback">
+                                        <span *ngIf="f2['address'].errors['required']">Street name is required.</span>
+                                    </span>
+                                </div>
+
+                                <!-- city name -->
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="city" placeholder="Enter City"
+                                        formControlName="city"
+                                        [ngClass]="{'is-invalid':f2['city'].errors && f2['city'].touched}">
+                                    <span *ngIf="f2['city'].errors && f2['city'].touched" class="invalid-feedback">
+                                        <span *ngIf="f2['city'].errors['required']">City name is required.</span>
+                                        <span *ngIf="f2['city'].errors['pattern']">Please enter valid city name.</span>
+                                    </span>
+                                </div>
+
+                                <!-- State name -->
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="state" placeholder="Enter State"
+                                        formControlName="state"
+                                        [ngClass]="{'is-invalid':f2['state'].errors && f2['state'].touched}">
+                                    <span *ngIf="f2['state'].errors && f2['state'].touched" class="invalid-feedback">
+                                        <span *ngIf="f2['state'].errors['required']">State name is required.</span>
+                                        <span *ngIf="f2['state'].errors['pattern']">Please enter valid state
+                                            name.</span>
+                                    </span>
+                                </div>
+
+                                <!-- Zip code -->
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="zip" placeholder="Enter Zip"
+                                        formControlName="zip"
+                                        [ngClass]="{'is-invalid':f2['zip'].errors && f2['zip'].touched}">
+                                    <span *ngIf="f2['zip'].errors && f2['zip'].touched" class="invalid-feedback">
+                                        <span *ngIf="f2['zip'].errors['required']">Pincode is required.</span>
+                                        <span *ngIf="f2['zip'].errors['pattern']">Please enter valid Pincode.</span>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success opacity-75 me-2">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="toggleEdit()">cancel</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!--/ profile container -->
+
+<!-- orders list container -->
+<div class="container-fluid bg-success bg-opacity-25 py-4">
+    <div class="container-lg">
+
+        <div class="h3 text-light text-center mb-3">Your Orders</div>
+
+        <div class="row">
+            <div class="col-12 d-flex flex-column align-items-center">
+
+                <!-- contaniner for orders array -->
+                <ng-container *ngIf="orderCount>0;else noOrderMassage">
+                    <ng-container *ngFor="let order of orders">
+
+                        <div class="card w-100 mb-2" style="max-width:1000px;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="text-secondary">Order placed</div>
+                                        <div>{{order.orderDate | date}}</div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="text-secondary">Ship to</div>
+                                        <div>{{order.shipedTo}}</div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="text-secondary">Order id</div>
+                                        <div>{{order.id}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body" *ngFor="let product of order.products">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img [src]="product.imageUrl" [alt]="product.name" class="img-fluid"
+                                            style="max-height:200px;">
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="h5"> {{product.name}}</div>
+                                        <div class="fs-5">
+                                            <span class="text-secondary">Quantity:</span>
+                                            {{product.quantity}}
+                                        </div>
+                                        <div class="fs-5">
+                                            <span class="text-secondary">Price:</span>
+                                            {{product.price | currency:'INR'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-container>
+                </ng-container>
+
+                <!-- no order message -->
+                <ng-template #noOrderMassage>
+                    <p class="h6 fs-4 text-center text-white">
+                        You haven't placed any orders yet !!
+                    </p>
+                </ng-template>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- orders list container -->
+
+<div class="container-lg my-5 py-5 px-xxl-5">
+    <div class="float-end ">
+        <button type=" button" class="btn btn-outline-danger btn-lg" (click)="logoutUser()">Logout</button>
+    </div>
+</div>

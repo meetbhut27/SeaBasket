@@ -33,8 +33,10 @@
                     </li>
 
                     <li class="nav-item mx-2" *ngIf="isLogedIn">
-                        <a class="nav-link text-white fs-5"><i class="bi bi-person-fill me-1"></i>{{userName | titlecase
-                            }}</a>
+                        <a class="nav-link text-white fs-5" [routerLink]="['/profile']">
+                            <img src="../../../../assets/man.png" alt="User Profile" width="30" height="30"
+                                class="d-inline-block align-text-top">
+                            {{userName | titlecase}}</a>
                     </li>
 
                     <li class="nav-item mx-2" *ngIf="!isLogedIn">
