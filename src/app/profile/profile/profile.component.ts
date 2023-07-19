@@ -82,7 +82,6 @@ export class ProfileComponent {
   }
 
   logoutUser() {
-
     // for confirmation popup
     Swal.fire({
       title: 'Logout',
@@ -102,7 +101,6 @@ export class ProfileComponent {
         return;
       }
     });
-
   }
 
   onSubmit() {

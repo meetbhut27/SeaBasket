@@ -8,6 +8,7 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
       { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) },
+      { path: 'order', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
     ]
   }
 ];

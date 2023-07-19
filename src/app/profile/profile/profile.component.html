@@ -191,7 +191,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <div class="text-secondary">Ship to</div>
+                                        <div class="text-secondary">Shipping to</div>
                                         <div>{{order.shipedTo}}</div>
                                     </div>
 
@@ -218,6 +218,11 @@
                                             {{product.price | currency:'INR'}}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="text-secondary float-end p-2" [routerLink]="['/order/'+ order.id]"
+                                    style="cursor: pointer;">View Details
                                 </div>
                             </div>
                         </div>
