@@ -21,10 +21,16 @@
             <!-- nav link and search bar -->
             <div class="collapse navbar-collapse mx-2" id="navbarSupportedContent">
 
-                <form class="d-flex input-group mt-1" role="search" style="max-width:500px;">
+                <form class="d-flex input-group mt-1" role="search" style="max-width:500px;" *ngIf="router.url.includes('products')">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button type="submit" class="btn btn-light"><i class="bi bi-search"></i></button>
                 </form>
+
+                <ul class="navbar-nav " *ngIf="!router.url.includes('products')">
+                    <li class="nav-item ms-lg-5 ms-2">
+                        <a class="nav-link text-white fs-5" [routerLink]="['/products']"><i class="bi bi-bag-fill">Products</i></a>
+                    </li>
+                </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 

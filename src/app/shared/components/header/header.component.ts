@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HelperService } from '../../services/helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName!: string;
   userSubscription!: Subscription;
 
-  constructor(private helperService: HelperService) { }
+  constructor(private helperService: HelperService,public router:Router) { }
 
   ngOnInit(): void {
     this.helperService.updateUserData();

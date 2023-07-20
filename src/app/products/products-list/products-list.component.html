@@ -1,0 +1,25 @@
+<div class="container-fluied">
+    <div class="container-lg py-5 d-flex justify-content-center">
+
+        <div class="gap-5 w-100 d-flex row justify-content-center">
+
+            <div class="card" style="width: 18rem;" *ngFor="let product of products" [routerLink]="['/products/'+ product.id ]">
+                <img [src]="product?.imageUrl" class="card-img-top" [alt]="product.name">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{product.name}}</h5>
+                    <bar-rating [(rate)]="product.avgRating" [max]="5" [readOnly]="true" class="justify-content-center d-flex">
+                        <ng-template ratingActive>
+                            <i class="bi bi-star-fill" style="margin: 2px; color: #edb867"></i>
+                        </ng-template>
+                        <ng-template ratingInactive>
+                            <i class="bi bi-star-fill" style="margin: 2px; color: #d2d2d2"></i>
+                        </ng-template>
+                    </bar-rating>
+                    <p class="card-text text-center">{{product?.price | currency:"INR"}}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
