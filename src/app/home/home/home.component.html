@@ -5,20 +5,11 @@
 
         <!-- shop by category sidebar -->
         <div class="col-xxl-2 col-lg-3 col-sm-4 bg-body-secondary">
-            <div class="py-3 ps-3 d-flex flex-column justify-content-around" style=" height:600px;">
+            <div class="py-3 ps-3 d-flex flex-column align-items-sm-start align-items-center" style=" height:600px;">
 
-                <p class="h3 text-center text-secondary">Shop By Category</p>
+                <p class="h3 text-center text-secondary mb-4">Shop By Category</p>
 
-                <div class="text-secondary fs-5 ">Electronics & Computers</div>
-                <div class="text-secondary fs-5 ">Home & Kitchen</div>
-                <div class="text-secondary fs-5 ">Fashion & Accessories</div>
-                <div class="text-secondary fs-5 ">Beauty & Personal Care</div>
-                <div class="text-secondary fs-5 ">Health & Wellness</div>
-                <div class="text-secondary fs-5 ">Books</div>
-                <div class="text-secondary fs-5 ">Sports</div>
-                <div class="text-secondary fs-5 ">Toys & Games</div>
-                <div class="text-secondary fs-5 ">Baby & Nursery</div>
-                <div class="text-secondary fs-5 ">Automotive & Industrial</div>
+                <div class="text-secondary fs-5 mb-3" *ngFor="let categorie of categories">{{categorie | titlecase}}</div>
 
             </div>
         </div>
@@ -58,29 +49,11 @@
                                     class="container-fluid d-flex flex-lg-row flex-column align-items-center justify-content-xl-center gap-xl-4 gap-2">
 
                                     <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
+                                    <div class="card" style="width: 20rem; min-width:225px;" *ngFor="let product of products1" [routerLink]="['/products/'+ product.id ]">
+                                        <img [src]="product?.imageUrl" class="card-img-top" [alt]="product.name">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
+                                            <h5 class="card-title text-center">{{product.name}}</h5>
+                                            <p class="card-text text-center">{{product?.price | currency:"INR"}}</p>
                                         </div>
                                     </div>
 
@@ -93,29 +66,11 @@
                                     class="container-fluid d-flex flex-lg-row flex-column align-items-center justify-content-xl-center gap-xl-4 gap-2">
 
                                     <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
+                                    <div class="card" style="width: 20rem; min-width:225px;" *ngFor="let product of products1" [routerLink]="['/products/'+ product.id ]">
+                                        <img [src]="product?.imageUrl" class="card-img-top" [alt]="product.name">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
+                                            <h5 class="card-title text-center">{{product.name}}</h5>
+                                            <p class="card-text text-center">{{product?.price | currency:"INR"}}</p>
                                         </div>
                                     </div>
 
@@ -128,29 +83,11 @@
                                     class="container-fluid d-flex flex-lg-row flex-column align-items-center justify-content-xl-center gap-xl-4 gap-2">
 
                                     <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
+                                    <div class="card" style="width: 20rem; min-width:225px;" *ngFor="let product of products1" [routerLink]="['/products/'+ product.id ]">
+                                        <img [src]="product?.imageUrl" class="card-img-top" [alt]="product.name">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
-                                        </div>
-                                    </div>
-
-                                    <!-- product -->
-                                    <div class="card" style="width: 20rem; min-width:225px;">
-                                        <img src="https://m.media-amazon.com/images/I/71c6fA0zXuS._UY695_.jpg"
-                                            class="card-img-top" alt="product-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">product-1</h5>
+                                            <h5 class="card-title text-center">{{product.name}}</h5>
+                                            <p class="card-text text-center">{{product?.price | currency:"INR"}}</p>
                                         </div>
                                     </div>
 
@@ -173,14 +110,11 @@
 
                     </div>
 
-
-
                 </div>
 
             </div>
 
         </div>
     </div>
-
 
 </div>

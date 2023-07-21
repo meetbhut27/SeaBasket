@@ -38,8 +38,8 @@ export class VerificationComponent {
 
     this.authService.verification(this.verificationForm.value).subscribe((Data: any) => {
       this.toastr.success(Data.message)
-      const { userName, authToken } = Data
-      localStorage.setItem('userData', JSON.stringify({ userName, authToken }))
+      const { userName, authToken,userId } = Data
+      localStorage.setItem('userData', JSON.stringify({ userName, authToken, userId }))
       this.helperService.updateUserData();
       this.router.navigate(['/home']);
     })

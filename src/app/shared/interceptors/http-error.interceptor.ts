@@ -22,7 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error) => {
         let message: string = ''
-        if (error.status == 500 || error.status == 401) {
+        if (error.status == 500 || error.status == 402) {
           message = 'Token is Expired Please Login again.'
           localStorage.clear();
           this.helperService.updateUserData();
