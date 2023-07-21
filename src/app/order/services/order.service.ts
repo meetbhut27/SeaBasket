@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { orderDetailsAPI } from 'src/app/shared/APIs';
+import { getCartAPI, orderDetailsAPI } from 'src/app/shared/APIs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,14 @@ export class OrderService {
   cancelOrder(id: string) {
     return this.http.post(orderDetailsAPI + id,{}).pipe(
       map((res) => {
+        return res;
+      })
+    )
+  }
+
+  getCart(){
+    return this.http.get(getCartAPI).pipe(
+      map((res)=>{
         return res;
       })
     )

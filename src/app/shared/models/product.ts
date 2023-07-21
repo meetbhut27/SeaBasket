@@ -3,9 +3,9 @@ export interface Product {
     name: string,
     price: number,
     category?: string,
-    description: string,
+    description?: string,
     imageUrl: string,
-    avgRating: number,
+    avgRating?: number,
     productDetail?: {
         id: number,
         ASIN: string,
@@ -25,5 +25,6 @@ export interface Product {
                 }
             }
         } 
-    ]
+    ],
+    quantity:number | 1
 }

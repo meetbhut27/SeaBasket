@@ -1,0 +1,42 @@
+<div class="container-fluid my-5">
+    <div class="container-lg">
+
+        <div class="fs-2 h5 text-success opacity-75">Shopping Cart</div>
+        <hr class="mb-3 mt-0">
+    
+        <ng-container *ngIf="cart && cart.Cart_Total>0 ;else emptyCart">
+            <!-- cart product list  -->
+            <div *ngFor="let product of cart?.products;let i = index">
+                <div class="row ">
+                    <div class="col-4">
+                        <img [src]="product?.imageUrl" [alt]="product?.name" class="img-fluid" style="max-height:200px;">
+                    </div>
+                    <div class="col-8 my-auto">
+                        <div class="fs-3 fw-medium mb-2"> {{product?.name}}</div>
+                        <div class="fs-5">
+                            <span class="text-secondary">Price: </span>
+                            {{product?.price | currency:'INR'}}
+                        </div>
+                        <div class="fs-5">
+                            <span class="text-secondary">Quantity: </span>{{product?.quantity}}
+                        </div>
+                        <button class="btn btn-danger btn-sm mt-2" (click)="onRemoveClick(i)">Remove</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!-- /cart product list  -->
+    
+            <div>
+                <button class="btn btn-warning">Checkout</button>
+                <div class="float-end fs-4"><span class="text-secondary">Total: </span>{{cart.Cart_Total| currency:"INR"}}</div>
+            </div>  
+        </ng-container>
+
+        <!-- cart empty container -->
+        <ng-template #emptyCart>
+            <div class="text-center fs-3 text-primary">Your SeaBasket Cart is empty.</div>
+        </ng-template>
+
+    </div> 
+</div>
