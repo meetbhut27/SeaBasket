@@ -14,7 +14,7 @@ export interface Product {
         sellerRank: number
         manufacturer: string
     },
-    reviews?: [
+    reviews?:[
         {
             review: string,
             image: string,
@@ -24,6 +24,6 @@ export interface Product {
                     name: string
                 }
             }
-        }
+        } 
     ]
 }

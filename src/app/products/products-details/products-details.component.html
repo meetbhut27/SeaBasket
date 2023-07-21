@@ -1,12 +1,132 @@
 <div class="container-fluied">
     <div class="container-lg">
 
-        <div class="row">
-            <div class="col-5">
-                gcghv
-                <img src="" alt="">
+        <div class="row mt-md-5">
+
+            <!-- product image container -->
+            <div class="col-md-4 col-12 m-auto">
+                <img class="img-fluid" [src]="product?.imageUrl" [alt]="product?.name">
+            </div>
+
+            <!-- product details container -->
+            <div class="col-md-8 px-xxl-5 col-12">
+                <div class="pt-5">
+                    <div class="h6 fs-2">{{product?.name | titlecase}}</div>
+                    <div class="fs-5 mb-4">{{product?.description | titlecase}}</div>
+
+                    <bar-rating [(rate)]="product.avgRating" [max]="5" [readOnly]="true" class="fs-2"
+                        *ngIf="product?.avgRating">
+                        <ng-template ratingActive>
+                            <i class="bi bi-star-fill"
+                                style="margin:2px; color:#edb867; font-size:2rem !important;"></i>
+                        </ng-template>
+                        <ng-template ratingInactive>
+                            <i class="bi bi-star-fill"
+                                style="margin:2px; color:#d2d2d2; font-size:2rem !important;"></i>
+                        </ng-template>
+                    </bar-rating>
+                    <div class="fs-5"><span class="text-secondary">Price: </span>{{product?.price | currency:"INR"}}<sub
+                            class="ms-1 text-secondary">Inclusive of all taxes</sub></div>
+                    <hr class="mb-3 mt-0">
+
+                    <div><span class="text-secondary">Brand: </span>{{product?.productDetail?.brand | titlecase}}</div>
+                    <div><span class="text-secondary">Category: </span>{{product?.category | titlecase}}</div>
+                    <div><span class="text-secondary">Seller Rank By Category:
+                        </span>{{product?.productDetail?.sellerRank}}</div>
+                    <div><span class="text-secondary">Manufacturer: </span>{{product?.productDetail?.manufacturer |
+                        titlecase}}</div>
+
+                    <!-- container for buy/add to cart -->
+                    <div class="mt-3">
+                        <div class="mb-3">
+                            <label for="quantity">Quantity</label>
+                            <select class="form-select" name="quantity" id="quantity" class="w-25 form-select"
+                                [(ngModel)]="productQuantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-primary me-2 px-4 py-2" (click)="onBuyNow()">Buy
+                            Now</button>
+                        <button type="button" class="btn btn-warning px-3 py-2" (click)="onAddToCart()">Add To
+                            Cart</button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /product details container -->
+
+        </div>
+
+        <!-- reveiw and rating container -->
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-9 col-12">
+                <p class="h5 fs-3 text-center text-secondary">Product Reviews</p>
+
+                <!--product reviews list  -->
+                <div class="mb-2" *ngFor="let reveiw of product?.reviews">
+
+                    <div class="card-header">
+                            <img src="../../../assets/man.png" alt="" height="30px" width="30px">
+                            <span class="fs-5 ms-3">{{reveiw?.rating?.user?.name}}</span>
+                    </div>
+
+                    <div>
+                            <bar-rating [(rate)]="reveiw.rating.rating" [max]="5" [readOnly]="true" class="fs-2">
+                                <ng-template ratingActive>
+                                    <i class="bi bi-star-fill" style="margin:2px; color:#edb867;"></i>
+                                </ng-template>
+                                <ng-template ratingInactive>
+                                    <i class="bi bi-star-fill" style="margin:2px; color:#d2d2d2;"></i>
+                                </ng-template>
+                            </bar-rating>
+                            <div class="fs-5">{{reveiw?.review}}</div>
+                    </div>
+                </div>
+ 
+                <!-- add revie toggle button -->
+                <div class="float-end" *ngIf="!addReviewClicked">
+                    <button class="btn btn-info" (click)="toggleAddReview()">Add Your Review</button>
+                </div>
+
+                <!-- review and rating form -->
+                <div *ngIf="addReviewClicked" class="mt-5">
+                    <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
+                        <p class="text-secondary fs-5 h6 mb-0">Share Your Experience</p>
+
+                        <bar-rating [max]="5" formControlName="rating">
+                            <ng-template ratingActive>
+                                <i class="bi bi-star-fill"
+                                    style="margin:2px; color:#edb867; font-size:2rem !important;"></i>
+                            </ng-template>
+                            <ng-template ratingInactive>
+                                <i class="bi bi-star-fill"
+                                    style="margin:2px; color:#d2d2d2; font-size:2rem !important;"></i>
+                            </ng-template>
+                        </bar-rating>
+                        <div>
+                            <textarea class="form-control" id="reveiw" rows="3" formControlName="review"></textarea>
+                        </div>
+                        <span *ngIf="f['rating'].errors && isSubmitClicked" class="text-danger">
+                            <small *ngIf="f['rating'].errors['required']">Please add rating for share your experience</small>
+                        </span>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success me-2">Share</button>
+                            <button type="button" class="btn btn-danger" (click)="toggleAddReview()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /review and rating form -->
+
             </div>
         </div>
+        <!-- /reveiw and rating container -->
 
     </div>
 </div>

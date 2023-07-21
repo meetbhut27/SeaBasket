@@ -4,6 +4,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { BarRatingModule } from "ngx-bar-rating"; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { BarRatingModule } from "ngx-bar-rating";
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    BarRatingModule
+    BarRatingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }
