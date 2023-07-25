@@ -1,13 +1,75 @@
 <div class="container-fluied">
+
+    <div class="container-lg pt-5">
+        <div class="card">
+            <div class="card-header">
+                <div class="fs-4 h6 m-0">Products Filters</div>
+            </div>
+            <div class="row px-2 card-body">
+
+                <!-- sorting -->
+                <div class="col-md-3 col-6 py-2">
+                    <label for="sorting">Sort Products</label>
+                    <select class="form-select" id="sorting" name="sortProduct" [(ngModel)]="sortBy"
+                        (change)="onSortByChange()">
+                        <option value="null">Sort By</option>
+                        <option value="name">Name</option>
+                        <option value="price:asc">Price Low to High</option>
+                        <option value="price:desc">Price High to Low</option>
+                    </select>
+                </div>
+
+                <!-- price filter -->
+                <div class="col-md-3 col-6 py-2">
+                    <label for="sorting">Price Range</label>
+                    <select class="form-select" id="sorting" name="sortProduct" [(ngModel)]="priceRange"
+                        (change)="onFiltersChanged()">
+                        <option value="all">All</option>
+                        <option value="less1k">Belove 1000</option>
+                        <option value="1kTo3k">1000 to 3000</option>
+                        <option value="3k+">Above 3000</option>
+                    </select>
+                </div>
+
+                <!-- rating filter -->
+                <div class="col-md-3 col-6 py-2">
+                    <label for="sorting">Rating</label>
+                    <select class="form-select" id="sorting" name="sortProduct" [(ngModel)]="rating"
+                        (change)="onFiltersChanged()">
+                        <option value="all">All</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <!-- category filter -->
+                <div class="col-md-3 col-6 py-2">
+                    <label for="sorting">Category</label>
+                    <select class="form-select" id="sorting" name="sortProduct" [(ngModel)]="category"
+                        (change)="onFiltersChanged()">
+                        <option value="all">All</option>
+                        <option value="{{category}}" *ngFor="let category of categories">{{category}}</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="container-lg py-5 d-flex justify-content-center">
 
         <div class="gap-5 w-100 d-flex row justify-content-center">
 
-            <div class="card" style="width: 18rem;" *ngFor="let product of products" [routerLink]="['/products/'+ product.id ]">
+            <div class="card" style="width: 18rem;" *ngFor="let product of products"
+                [routerLink]="['/products/'+ product.id ]">
                 <img [src]="product?.imageUrl" class="card-img-top" [alt]="product.name">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{product.name}}</h5>
-                    <bar-rating [(rate)]="product.avgRating" [max]="5" [readOnly]="true" class="justify-content-center d-flex">
+                    <bar-rating [(rate)]="product.avgRating" [max]="5" [readOnly]="true"
+                        class="justify-content-center d-flex">
                         <ng-template ratingActive>
                             <i class="bi bi-star-fill" style="margin: 2px; color: #edb867"></i>
                         </ng-template>

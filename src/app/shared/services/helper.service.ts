@@ -9,6 +9,8 @@ export class HelperService {
   constructor() { }
   private userSubject = new BehaviorSubject<any>(null);
 
+  public categories:string[] = [];
+
   getUserData() {
     return this.userSubject.asObservable();
   }

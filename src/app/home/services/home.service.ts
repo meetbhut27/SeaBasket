@@ -12,7 +12,7 @@ export class HomeService {
 
   getCategories(){
     return this.http.get(categoriesAPI).pipe(
-      map((res)=>{
+      map((res:any)=>{
         return res;
       })
     )

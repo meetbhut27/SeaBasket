@@ -9,7 +9,7 @@
 
                 <p class="h3 text-center text-secondary mb-4">Shop By Category</p>
 
-                <div class="text-secondary fs-5 mb-3" *ngFor="let categorie of categories">{{categorie | titlecase}}</div>
+                <div class="text-secondary fs-5 mb-3" *ngFor="let category of categories" [routerLink]="['../products']" [queryParams]="{'category':category}">{{category | titlecase}}</div>
 
             </div>
         </div>
