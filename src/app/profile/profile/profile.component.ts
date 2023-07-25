@@ -26,7 +26,7 @@ export class ProfileComponent {
 
   constructor(
     private profileService: ProfileService,
-    private formBulilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
     private helperService: HelperService) {
@@ -58,12 +58,12 @@ export class ProfileComponent {
 
   makeEditForm() {
     // edit Profile Form 
-    this.editProfileForm = this.formBulilder.group({
+    this.editProfileForm = this.formBuilder.group({
       name: [this.userProfile.name, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
       email: [this.userProfile.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')]],
       phoneNo: [this.userProfile.phoneNo, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
 
-      Address: this.formBulilder.group({
+      Address: this.formBuilder.group({
         name: [this.userAddress.name, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
         address: [this.userAddress.address, [Validators.required]],
         city: [this.userAddress.city, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],

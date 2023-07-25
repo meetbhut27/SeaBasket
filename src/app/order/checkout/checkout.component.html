@@ -1,0 +1,300 @@
+<div class="container-lg my-5">
+    <div class="row justify-content-center">
+
+        <div class="fs-2 fw-medium text-center text-success opacity-75 mb-3">Checkout</div>
+
+        <div class="col-9" style="min-height:75vh;">
+
+            <div>
+                <div>
+                    <div class="mb-3"><i class="bi bi-1-circle-fill h4">Payment Method</i></div>
+                    <!-- payment container -->
+                    <div class="card p-0 mb-b ms-5" *ngIf="display=='payment'">
+                        <div class="card-header">
+                            <div class="fs-5">1.Select a payment method</div>
+                        </div>
+
+                        <form [formGroup]="paymentForm">
+                            <div class="card-body">
+
+                                <!-- card container -->
+                                <div class="form-check mb-3">
+                                    <label class="form-check-label" for="payment1">Credit Or Debit Card</label>
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="payment1"
+                                        value="card" formControlName="paymentMethod">
+                                    <div *ngIf="f['paymentMethod'].value=='card'">
+                                        <div class="card-header">
+                                            <p class="mb-0">Enter Card Details</p>
+                                            <form [formGroup]="cardDetailsFrom">
+                                                <input type="text" class="form-control mb-2"
+                                                    placeholder="Enter card Number" formControlName="cardNumber">
+                                                <input type="text" class="form-control mb-2" placeholder="Name on Card"
+                                                    formControlName="cardHolderName">
+                                                <div class="row ms-2">
+                                                    Expiry date:
+                                                    <div class="col-2">
+                                                        <select class="form-select" formControlName="expireMonth">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <select class="form-select col-3" formControlName="expireYear">
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                        </select>
+                                                    </div>
+                                                    <button class="btn btn-warning btn-sm col-2"
+                                                        (click)="onVerifyCard()">Verify</button>
+                                                </div>
+                                                <span *ngIf="cardDetailsFrom.invalid && cardDetailsFrom.touched">
+                                                    <small class="text-danger">Please enter a valid card
+                                                        details.</small>
+                                                </span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- card container -->
+
+                                <!-- UPI container -->
+                                <div class="form-check mb-3">
+                                    <label class="form-check-label" for="payment2">UPI payment</label>
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="payment2"
+                                        value="upi" formControlName="paymentMethod">
+                                    <div *ngIf="f['paymentMethod'].value=='upi'">
+                                        <form [formGroup]="upiIdForm">
+                                            <div class="card-header">
+                                                <p class="m-0">Please enter your UPI ID</p>
+                                                <input type="text" class="form-control "
+                                                    placeholder="name/phone number@bankname" formControlName="upiId">
+                                                <button class="btn btn-warning btn-sm mt-2"
+                                                    (click)="onVerifyUPI()">Verify</button>
+                                                <span
+                                                    *ngIf="upiIdForm.controls['upiId'].invalid && upiIdForm.controls['upiId'].touched">
+                                                    <small class="text-danger ms-2">Please enter a valid UPI id.</small>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /UPI container -->
+
+                                <!-- cod container -->
+                                <div class="form-check mb-3">
+                                    <label class="form-check-label" for="payment3">Cash on Delivery</label>
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="payment3"
+                                        value="cod" formControlName="paymentMethod">
+                                    <div *ngIf="f['paymentMethod'].value=='cod'">
+                                        <div class="text-secondary card-header">
+                                            Cash, UPI and Cards accepted for Cash on Delivery.</div>
+                                    </div>
+                                </div>
+                                <!-- /cod container -->
+
+                            </div>
+
+                            <div class="card-footer">
+                                <button class="btn btn-warning" (click)="onPaymnetContinue(paymentForm.value)">Continue</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div *ngIf="display!='payment'" class="mx-4">
+                        <div class="d-flex justify-content-between" *ngIf="paymentForm.value">
+                            <div>
+                                <div *ngIf="f['paymentMethod'].value=='card'">
+                                    Payment With Credit or Debit Card.
+                                </div>
+                                <div *ngIf="f['paymentMethod'].value=='upi'">
+                                    Payment With UPI.
+                                </div>
+                                <div *ngIf="f['paymentMethod'].value=='cod'">
+                                    Pay on Cash on Delivery.
+                                </div>
+                            </div>
+                            <button class="btn btn-warning float-end" (click)="changePaymentMethod()">Change</button>
+                        </div>
+                    </div>
+                    <!-- /payment container -->
+                </div>
+                <hr>
+                <div class="mt-3">
+                    <div class="mb-3"><i class="bi bi-2-circle-fill h4 mb-3">Delivery Address</i></div>
+                    <!-- address container -->
+                    <div class="card ms-5" *ngIf="display=='address'">
+                        <div class="card-header">
+                            <div class="fs-5">2.Enter Delivery Address</div>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- fecth address display -->
+                            <div *ngIf="userAddress">
+                                <div class="fs-5 fw-medium">{{userAddress.name}}</div>
+                                <div>{{userAddress.address}}</div>
+                                <div>{{userAddress.city}}</div>
+                                <div>{{userAddress.state}}</div>
+                                <div>{{userAddress.zip}}</div>
+                            </div>
+
+                            <!-- new adddress add -->
+                            <div *ngIf="!userAddress">
+                                <form [formGroup]="newAddress">
+
+                                    <!-- address name -->
+                                    <div class="mb-2">
+                                        <input type="text" class="form-control" id="name"
+                                            placeholder="Enter Address Type" formControlName="name"
+                                            [ngClass]="{'is-invalid':f2['name'].errors && f2['name'].touched}">
+                                        <span *ngIf="f2['name'].errors && f2['name'].touched" class="invalid-feedback">
+                                            <span *ngIf="f2['name'].errors['required']">Address Type is required.</span>
+                                            <span *ngIf="f2['name'].errors['pattern']">Please enter valid address
+                                                name.</span>
+                                        </span>
+                                    </div>
+
+                                    <!-- Street name -->
+                                    <div class="mb-2">
+                                        <input type="text" class="form-control" id="address" placeholder="Enter Street"
+                                            formControlName="address"
+                                            [ngClass]="{'is-invalid':f2['address'].errors && f2['address'].touched}">
+                                        <span *ngIf="f2['address'].errors && f2['address'].touched"
+                                            class="invalid-feedback">
+                                            <span *ngIf="f2['address'].errors['required']">Street name is
+                                                required.</span>
+                                        </span>
+                                    </div>
+
+                                    <!-- city name -->
+                                    <div class="mb-2">
+                                        <input type="text" class="form-control" id="city" placeholder="Enter City"
+                                            formControlName="city"
+                                            [ngClass]="{'is-invalid':f2['city'].errors && f2['city'].touched}">
+                                        <span *ngIf="f2['city'].errors && f2['city'].touched" class="invalid-feedback">
+                                            <span *ngIf="f2['city'].errors['required']">City name is required.</span>
+                                            <span *ngIf="f2['city'].errors['pattern']">Please enter valid city
+                                                name.</span>
+                                        </span>
+                                    </div>
+
+                                    <!-- State name -->
+                                    <div class="mb-2">
+                                        <input type="text" class="form-control" id="state" placeholder="Enter State"
+                                            formControlName="state"
+                                            [ngClass]="{'is-invalid':f2['state'].errors && f2['state'].touched}">
+                                        <span *ngIf="f2['state'].errors && f2['state'].touched"
+                                            class="invalid-feedback">
+                                            <span *ngIf="f2['state'].errors['required']">State name is required.</span>
+                                            <span *ngIf="f2['state'].errors['pattern']">Please enter valid state
+                                                name.</span>
+                                        </span>
+                                    </div>
+
+                                    <!-- Zip code -->
+                                    <div class="mb-2">
+                                        <input type="text" class="form-control" id="zip" placeholder="Enter Zip"
+                                            formControlName="zip"
+                                            [ngClass]="{'is-invalid':f2['zip'].errors && f2['zip'].touched}">
+                                        <span *ngIf="f2['zip'].errors && f2['zip'].touched" class="invalid-feedback">
+                                            <span *ngIf="f2['zip'].errors['required']">Pincode is required.</span>
+                                            <span *ngIf="f2['zip'].errors['pattern']">Please enter valid Pincode.</span>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button class="btn btn-warning" (click)="onAddressContinue()">Continue</button>
+                        </div>
+                    </div>
+                    <!-- /address container -->
+                    <div *ngIf="display!='address'">
+                        <div class="d-flex justify-content-between mx-4" *ngIf="userAddress">
+                            <div>Delivery on {{userAddress.name}}</div>
+                            <button class="btn btn-warning" (click)="changeOrviewAddress()">View</button>
+                        </div>
+                        <div *ngIf="f2['name'].value" class="d-flex justify-content-between mx-4">
+                            <div>Delivery on {{f2['name'].value}}</div>
+                            <button class="btn btn-warning" (click)="changeOrviewAddress()">Change</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mt-3">
+                    <div class="mb-3"><i class="bi bi-3-circle-fill h4 mb-3">Review items and delivery</i></div>
+                    <div *ngIf="display=='placeorder'">
+                        <div class="ms-5">
+                            <div *ngIf="checkoutMode=='cart'">
+                                <div *ngFor="let product of cart?.products;let i = index">
+                                    <div class="row ">
+                                        <div class="col-4">
+                                            <img [src]="product?.imageUrl" [alt]="product?.name" class="img-fluid"
+                                                style="max-height:200px;">
+                                        </div>
+                                        <div class="col-8 my-auto">
+                                            <div class="fs-3 fw-medium mb-2"> {{product?.name}}</div>
+                                            <div class="fs-5">
+                                                <span class="text-secondary">Price: </span>
+                                                {{product?.price | currency:'INR'}}
+                                            </div>
+                                            <div class="fs-5">
+                                                <span class="text-secondary">Quantity: </span>{{product?.quantity}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div *ngIf="checkoutMode=='buyNow'">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img [src]="buyNowProduct?.imageUrl" [alt]="buyNowProduct?.name" class="img-fluid"
+                                            style="max-height:200px;">
+                                    </div>
+                                    <div class="col-8 my-auto">
+                                        <div class="fs-3 fw-medium mb-2"> {{buyNowProduct?.name}}</div>
+                                        <div class="fs-5">
+                                            <span class="text-secondary">Price: </span>
+                                            {{buyNowProduct?.price | currency:'INR'}}
+                                        </div>
+                                        <div class="fs-5">
+                                            <span class="text-secondary">Quantity: </span>{{buyNowProductQuantity}}
+                                        </div>
+                                    </div>
+                                </div>  
+                            <hr>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="text-primary fs-5" *ngIf="checkoutMode=='cart'">Order Total: {{cart.Cart_Total |
+                                currency:'INR'}}</div>
+                            <div class="text-primary fs-5" *ngIf="checkoutMode=='buyNow'">Order Total: {{buyNowProduct.price*buyNowProductQuantity |
+                                currency:'INR'}}</div>
+                            <button class="btn btn-success" (click)="onPlaceOrder()">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>

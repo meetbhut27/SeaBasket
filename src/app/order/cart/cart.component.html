@@ -28,7 +28,7 @@
             <!-- /cart product list  -->
     
             <div>
-                <button class="btn btn-warning">Checkout</button>
+                <button class="btn btn-warning" [routerLink]="['../checkout']" [queryParams]="{from:'cart'}">Checkout</button>
                 <div class="float-end fs-4"><span class="text-secondary">Total: </span>{{cart.Cart_Total| currency:"INR"}}</div>
             </div>  
         </ng-container>

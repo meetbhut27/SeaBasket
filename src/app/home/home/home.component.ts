@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit{
     this.homeService.getTrendingProducts().subscribe(
       (Data:any)=>{
         this.trendingProducts=Data.trendingProducts
+        let i=1
         this.trendingProducts?.forEach((product)=>{
-          let i=1
           if(i<=3){
             this.products1.push(product)
           }
@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit{
           i++;
         })
       }
+
     )
 
   }

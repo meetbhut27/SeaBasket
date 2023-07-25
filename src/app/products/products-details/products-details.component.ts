@@ -65,9 +65,6 @@ export class ProductsDetailsComponent implements OnInit{
     return this.reviewForm.controls;
   }
 
-  onBuyNow(){
-  }
-
   onAddToCart(){
     const productData:Product = {
       id: this.productId,

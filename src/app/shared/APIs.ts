@@ -12,7 +12,9 @@ export const orderAPI = baseAPI + '/order';
 
 //order Module APIs
 export const orderDetailsAPI = baseAPI + '/order/';
-export const getCartAPI= baseAPI + '/cart';
+export const placeOrderAPI = baseAPI + '/order';
+export const cartAPI= baseAPI + '/cart';
+export const buyNowAPI = baseAPI + '/buy';
 
 //products Module APIs
 export const productsAPI = baseAPI + '/product';

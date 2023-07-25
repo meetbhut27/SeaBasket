@@ -21,11 +21,6 @@ export class CartComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // this.orderService.getCart().subscribe(
-    //   (Data:any)=>{
-    //     this.cart = Data.cart
-    //   }
-    // )
   }
 
   onRemoveClick(index: number){

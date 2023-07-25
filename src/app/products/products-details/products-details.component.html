@@ -51,7 +51,7 @@
                             </select>
                         </div>
 
-                        <button type="button" class="btn btn-primary me-2 px-4 py-2" (click)="onBuyNow()">Buy
+                        <button type="button" class="btn btn-primary me-2 px-4 py-2" [routerLink]="['../../order/checkout']" [queryParams]="{from:'buyNow',productId:product?.id,quantity:productQuantity}">Buy
                             Now</button>
                         <button type="button" class="btn btn-warning px-3 py-2" (click)="onAddToCart()">Add To
                             Cart</button>
