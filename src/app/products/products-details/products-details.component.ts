@@ -45,10 +45,19 @@ export class ProductsDetailsComponent implements OnInit{
   }
 
   toggleAddReview(){
-    this.addReviewClicked = !this.addReviewClicked;
-    if(!this.addReviewClicked){
+    if(this.addReviewClicked){
+      this.addReviewClicked=false;
       this.reviewForm.reset();
       this.isSubmitClicked=false
+    }
+    else{
+      let user = localStorage.getItem('userData');
+      if(user){
+        this.addReviewClicked=true;
+      }
+      else{
+        this.toater.error("To add a review, please log in to your account")
+      }
     }
   }
 
@@ -58,6 +67,7 @@ export class ProductsDetailsComponent implements OnInit{
       console.log(this.reviewForm.value)
       this.toater.success("Your review has been submitted")
       this.isSubmitClicked=false;
+      this.toggleAddReview()
     }
   }
 
