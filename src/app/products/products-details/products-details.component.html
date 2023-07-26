@@ -29,12 +29,37 @@
                             class="ms-1 text-secondary">Inclusive of all taxes</sub></div>
                     <hr class="mb-3 mt-0">
 
-                    <div><span class="text-secondary">Brand: </span>{{product?.productDetail?.brand | titlecase}}</div>
-                    <div><span class="text-secondary">Category: </span>{{product?.category | titlecase}}</div>
-                    <div><span class="text-secondary">Seller Rank By Category:
-                        </span>{{product?.productDetail?.sellerRank}}</div>
-                    <div><span class="text-secondary">Manufacturer: </span>{{product?.productDetail?.manufacturer |
-                        titlecase}}</div>
+                    <table class="table table-striped-columns w-sm-50 py-4 m-0">
+                        <thead>
+                            <th class="fs-5">Product specifications</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-secondary">Category</td>
+                                <td>{{product?.category | titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">Seller Rank By Category</td>
+                                <td>{{product?.productDetail?.sellerRank}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">Brand</td>
+                                <td>{{product?.productDetail?.brand | titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">Manufacturer</td>
+                                <td>{{product?.productDetail?.manufacturer |titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">Weight</td>
+                                <td>{{product?.productDetail?.itemWeight}} Grams</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">Product Number</td>
+                                <td>{{product?.productDetail?.ASIN}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <!-- container for buy/add to cart -->
                     <div class="mt-3">
