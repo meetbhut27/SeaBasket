@@ -139,7 +139,9 @@ export class CheckoutComponent implements OnInit {
     if (!this.userAddress && this.newAddress.invalid) {
       this.toastr.error('Pleace Enter Valid Address details for continued.')
     }
-    this.display='placeorder'
+    else{
+      this.display='placeorder'
+    }
   }
 
   onPlaceOrder(){
