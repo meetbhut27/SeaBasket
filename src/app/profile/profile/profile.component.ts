@@ -64,11 +64,11 @@ export class ProfileComponent {
       phoneNo: [this.userProfile.phoneNo, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
 
       Address: this.formBuilder.group({
-        name: [this.userAddress.name, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-        address: [this.userAddress.address, [Validators.required]],
-        city: [this.userAddress.city, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-        state: [this.userAddress.state, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-        zip: [this.userAddress.zip, [Validators.required, Validators.pattern('^[0-9]{6}$')]]
+        name: [this.userAddress?.name, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        address: [this.userAddress?.address, [Validators.required]],
+        city: [this.userAddress?.city, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        state: [this.userAddress?.state, [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        zip: [this.userAddress?.zip, [Validators.required, Validators.pattern('^[0-9]{6}$')]]
       })
     })
   }

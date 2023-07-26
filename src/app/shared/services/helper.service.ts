@@ -6,7 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HelperService {
 
-  constructor() { }
+  constructor() { 
+    this.updateUserData()
+  }
   private userSubject = new BehaviorSubject<any>(null);
 
   public categories:string[] = [];

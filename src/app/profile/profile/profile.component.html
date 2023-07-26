@@ -25,7 +25,7 @@
                     <hr>
 
                     <!-- address card -->
-                    <div class="card">
+                    <div class="card" *ngIf="userAddress">
                         <div class="card-header">
                             <div class="h4 fs-5">Address
                                 <span>(<span>{{userAddress?.name | titlecase}}</span>)</span>
@@ -38,6 +38,9 @@
                             <p class="fs-5 mb-1">{{userAddress?.state | titlecase}},</p>
                             <p class="fs-5 mb-1">{{userAddress?.zip}}</p>
                         </div>
+                    </div>
+                    <div *ngIf="!userAddress">
+                        <div class="fs-5 text-secondary">We noticed that you haven't added an address to your profile. Adding an address will help us provide you with better service.</div>
                     </div>
 
                     <div class="float-end mt-5">
