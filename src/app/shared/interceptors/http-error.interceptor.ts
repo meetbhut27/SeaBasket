@@ -32,6 +32,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           message = error.error.message
         }
         this.toastr.error(message, 'Error')
+        this.helperService.stoploading()
         return of()
       })
     )

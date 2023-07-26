@@ -32,6 +32,14 @@ export class ProductsListComponent implements OnInit {
       }
     )
 
+    this.productsService.getProductsSubject().subscribe((Data)=>{
+      this.products = Data
+      this.sortBy= null;
+      this.category = 'all';
+      this.rating = 'all';
+      this.priceRange = 'all';
+    })
+    
     this.activatedRoute.queryParams.subscribe((params)=>{
       if(params['category']){
         this.category=params['category']
@@ -47,13 +55,6 @@ export class ProductsListComponent implements OnInit {
       }     
     })
 
-    this.productsService.getProductsSubject().subscribe((Data)=>{
-      this.products = Data
-      this.sortBy= null;
-      this.category = 'all';
-      this.rating = 'all';
-      this.priceRange = 'all';
-    })
   }
 
   onSortByChange() {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HelperService } from './shared/services/helper.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'SeaBasket';
+  public isLoading:boolean = false
+
+  constructor(
+    private helperService: HelperService
+  ){
+    this.helperService.getLoaderStatus().subscribe((status)=>{
+      this.isLoading = status
+    })
+  }
 }

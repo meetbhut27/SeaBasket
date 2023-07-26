@@ -8,6 +8,7 @@ import { HttpErrorInterceptor } from './shared/interceptors/http-error.intercept
 import { HttpHeaderInterceptor } from './shared/interceptors/http-header.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [
     {
