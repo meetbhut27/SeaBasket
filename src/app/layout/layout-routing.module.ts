@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { authGuard } from '../shared/guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
       { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
-      { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) },
+      { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule),canActivate:[authGuard] },
       { path: 'order', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
       { path: 'products', loadChildren: () => import('../products/products.module').then(m => m.ProductsModule) },
     ]
