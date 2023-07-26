@@ -6,10 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  templateUrl: './order-details.component.html',
+  styleUrls: ['./order-details.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit {
 
   orderId!: string;
   orderDetails!: any

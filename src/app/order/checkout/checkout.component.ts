@@ -4,7 +4,7 @@ import { OrderService } from '../services/order.service';
 import { Address } from 'src/app/shared/models/address';
 import { ToastrService } from 'ngx-toastr';
 import { Cart } from 'src/app/shared/models/cart';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
 
 @Component({
@@ -30,7 +30,8 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private orderService: OrderService,
     private toastr: ToastrService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private router:Router
   ) {
     this.activatedRoute.queryParams.subscribe((params)=>{
       this.checkoutMode=params['from'];
@@ -155,6 +156,7 @@ export class CheckoutComponent implements OnInit {
             this.orderService.placeOrder().subscribe((Data:any)=>{
               this.toastr.success(Data.message)
               localStorage.removeItem('cart')
+              this.router.navigate(['../profile'])
             })
           }
         })
